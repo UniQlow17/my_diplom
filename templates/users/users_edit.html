@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}Изменение данных{% endblock %}
+
+{% block content %}
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="card col-5 m-3">
+      <div class="card-header">
+        Изменение данных
+      </div>
+      <div class="card-body">
+        <form method="post" action="." enctype="multipart/form-data">
+          {% csrf_token %}
+          {% if image %}
+            <div class="image_container d-flex justify-content-center align-items-center">
+              <img src="{{ image.url }}" height="200">
+            </div>
+          {% endif %}
+          {% bootstrap_form form %}
+          {% bootstrap_button button_type="submit" content="Изменить" %}
+          {% url 'password_change' as the_link %}
+          {% bootstrap_button "Изменить пароль" button_type="link" href=the_link %}
+        </form>
+    </div>
+  </div>
+{% endblock %}

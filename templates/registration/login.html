@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="card col-4 m-3">
+      <div class="card-header">
+        Войти в систему
+      </div>
+      <div class="card-body">
+        <form method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          <input type="hidden" name="next" value="{{ next }}">
+          {% bootstrap_button button_type="submit" content="Войти" %}
+          {% url 'password_reset' as the_link %}
+          {% bootstrap_button "Забыли пароль?" button_type="link" href=the_link %}
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

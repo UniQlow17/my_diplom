@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}Обратная связь{% endblock %}
+
+{% block content %}
+  {% if flag %}
+    <div class="message-block" style="margin-bottom:20px;text-align:center;">
+      <h3>Спасибо за оставленный отзыв =3</h3>
+    </div>
+  {% endif %}
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="card col-5 m-3">
+      <div class="card-header">
+        Форма обратной связи
+      </div>
+      <div class="card-body">
+        <form method="post" action=".">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          {% bootstrap_button button_type="submit" content="Отправить" %}
+        </form>
+    </div>
+  </div>
+{% endblock %}

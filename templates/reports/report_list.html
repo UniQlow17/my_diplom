@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Мои отчёты{% endblock %}
+
+{% block content %}
+  <h1 style="text-align:center;margin-bottom:50px;">Мои отчёты</h1>
+  <div class="row" style="height:30px;background-color:#00000008;">
+    <div class="col border rounded d-flex align-items-center justify-content-center">
+      Название
+    </div>
+    <div class="col border rounded d-flex align-items-center justify-content-center">
+      Дата и время публикации
+    </div>
+    <div class="col border rounded d-flex align-items-center justify-content-center">
+      Действия
+    </div>
+  </div>
+  {% for report in page_obj %}
+    <div class="row" style="height:50px;">
+      <div class="col border rounded d-flex align-items-center justify-content-center">
+        <a href="{% url 'reports:detail' report.id %}" style="text-decoration: none;">
+          {{ report.title }}
+        </a>
+      </div>
+      <div class="col border rounded d-flex align-items-center justify-content-center">
+        {{ report.pub_date }}
+      </div>
+      <div class="col border rounded d-flex align-items-center justify-content-center">
+        <a href="{% url 'reports:download_report' report.id %}" class="btn btn-primary" style="margin-right:5px;">Скачать запись</a>
+        <a href="{% url 'reports:delete' report.id %}" class="btn btn-danger">Удалить запись</a>
+      </div>
+    </div>
+  {% endfor %}
+
+  {% include "includes/paginator.html" %}
+{% endblock %}

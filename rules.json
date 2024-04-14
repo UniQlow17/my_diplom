@@ -1,0 +1,588 @@
+[
+{
+  "model": "reports.param",
+  "pk": 1,
+  "fields": {
+    "name": "Шрифт",
+    "slug": "font_name"
+  }
+},
+{
+  "model": "reports.param",
+  "pk": 2,
+  "fields": {
+    "name": "Размер шрифта",
+    "slug": "font_size"
+  }
+},
+{
+  "model": "reports.param",
+  "pk": 3,
+  "fields": {
+    "name": "Межстрочный интервал",
+    "slug": "line_spacing"
+  }
+},
+{
+  "model": "reports.param",
+  "pk": 4,
+  "fields": {
+    "name": "Выравнивание",
+    "slug": "alignment"
+  }
+},
+{
+  "model": "reports.param",
+  "pk": 5,
+  "fields": {
+    "name": "Отступ первой строки",
+    "slug": "first_line_indent"
+  }
+},
+{
+  "model": "reports.param",
+  "pk": 6,
+  "fields": {
+    "name": "Отступ слева",
+    "slug": "left_indent"
+  }
+},
+{
+  "model": "reports.param",
+  "pk": 7,
+  "fields": {
+    "name": "Отступ справа",
+    "slug": "right_indent"
+  }
+},
+{
+  "model": "reports.param",
+  "pk": 8,
+  "fields": {
+    "name": "Интервал до",
+    "slug": "space_before"
+  }
+},
+{
+  "model": "reports.param",
+  "pk": 9,
+  "fields": {
+    "name": "Интервал после",
+    "slug": "space_after"
+  }
+},
+{
+  "model": "reports.param",
+  "pk": 10,
+  "fields": {
+    "name": "Жирный",
+    "slug": "bold"
+  }
+},
+{
+  "model": "reports.param",
+  "pk": 11,
+  "fields": {
+    "name": "Курсивный",
+    "slug": "italic"
+  }
+},
+{
+  "model": "reports.style",
+  "pk": 1,
+  "fields": {
+    "name": "Таблица",
+    "slug": "TableNormal"
+  }
+},
+{
+  "model": "reports.style",
+  "pk": 2,
+  "fields": {
+    "name": "Обычный",
+    "slug": "Normal"
+  }
+},
+{
+  "model": "reports.style",
+  "pk": 3,
+  "fields": {
+    "name": "Список",
+    "slug": "List"
+  }
+},
+{
+  "model": "reports.style",
+  "pk": 4,
+  "fields": {
+    "name": "Заголовок",
+    "slug": "Heading"
+  }
+},
+{
+  "model": "reports.style",
+  "pk": 5,
+  "fields": {
+    "name": "Название рисунка",
+    "slug": "ImageName"
+  }
+},
+{
+  "model": "reports.style",
+  "pk": 6,
+  "fields": {
+    "name": "Название таблицы",
+    "slug": "TableName"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 1,
+  "fields": {
+    "style": 1,
+    "param": 1,
+    "value": "Times New Roman"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 2,
+  "fields": {
+    "style": 1,
+    "param": 2,
+    "value": "12"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 3,
+  "fields": {
+    "style": 1,
+    "param": 3,
+    "value": "1"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 4,
+  "fields": {
+    "style": 2,
+    "param": 1,
+    "value": "Times New Roman"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 5,
+  "fields": {
+    "style": 2,
+    "param": 2,
+    "value": "14"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 6,
+  "fields": {
+    "style": 2,
+    "param": 3,
+    "value": "1.5"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 7,
+  "fields": {
+    "style": 2,
+    "param": 4,
+    "value": "JUSTIFY"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 8,
+  "fields": {
+    "style": 2,
+    "param": 5,
+    "value": "1.25"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 9,
+  "fields": {
+    "style": 2,
+    "param": 6,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 10,
+  "fields": {
+    "style": 2,
+    "param": 7,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 11,
+  "fields": {
+    "style": 2,
+    "param": 8,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 12,
+  "fields": {
+    "style": 2,
+    "param": 9,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 13,
+  "fields": {
+    "style": 3,
+    "param": 1,
+    "value": "Times New Roman"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 14,
+  "fields": {
+    "style": 3,
+    "param": 2,
+    "value": "14"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 15,
+  "fields": {
+    "style": 3,
+    "param": 4,
+    "value": "JUSTIFY"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 16,
+  "fields": {
+    "style": 3,
+    "param": 5,
+    "value": "1.25"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 17,
+  "fields": {
+    "style": 3,
+    "param": 6,
+    "value": "1.27"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 18,
+  "fields": {
+    "style": 3,
+    "param": 7,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 19,
+  "fields": {
+    "style": 3,
+    "param": 8,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 20,
+  "fields": {
+    "style": 3,
+    "param": 9,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 21,
+  "fields": {
+    "style": 4,
+    "param": 1,
+    "value": "Times New Roman"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 22,
+  "fields": {
+    "style": 4,
+    "param": 2,
+    "value": "14"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 23,
+  "fields": {
+    "style": 4,
+    "param": 3,
+    "value": "1"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 24,
+  "fields": {
+    "style": 4,
+    "param": 4,
+    "value": "CENTER"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 25,
+  "fields": {
+    "style": 4,
+    "param": 5,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 26,
+  "fields": {
+    "style": 4,
+    "param": 6,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 27,
+  "fields": {
+    "style": 4,
+    "param": 7,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 28,
+  "fields": {
+    "style": 4,
+    "param": 8,
+    "value": "12"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 29,
+  "fields": {
+    "style": 4,
+    "param": 9,
+    "value": "18"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 30,
+  "fields": {
+    "style": 4,
+    "param": 10,
+    "value": "True"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 31,
+  "fields": {
+    "style": 4,
+    "param": 11,
+    "value": "False"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 32,
+  "fields": {
+    "style": 5,
+    "param": 1,
+    "value": "Times New Roman"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 33,
+  "fields": {
+    "style": 5,
+    "param": 2,
+    "value": "14"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 34,
+  "fields": {
+    "style": 5,
+    "param": 3,
+    "value": "1.5"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 35,
+  "fields": {
+    "style": 5,
+    "param": 4,
+    "value": "CENTER"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 36,
+  "fields": {
+    "style": 5,
+    "param": 5,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 37,
+  "fields": {
+    "style": 5,
+    "param": 6,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 38,
+  "fields": {
+    "style": 5,
+    "param": 7,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 39,
+  "fields": {
+    "style": 5,
+    "param": 8,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 40,
+  "fields": {
+    "style": 5,
+    "param": 9,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 41,
+  "fields": {
+    "style": 6,
+    "param": 1,
+    "value": "Times New Roman"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 42,
+  "fields": {
+    "style": 6,
+    "param": 2,
+    "value": "14"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 43,
+  "fields": {
+    "style": 6,
+    "param": 3,
+    "value": "1.5"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 44,
+  "fields": {
+    "style": 6,
+    "param": 4,
+    "value": "RIGHT"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 45,
+  "fields": {
+    "style": 6,
+    "param": 5,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 46,
+  "fields": {
+    "style": 6,
+    "param": 6,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 47,
+  "fields": {
+    "style": 6,
+    "param": 7,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 48,
+  "fields": {
+    "style": 6,
+    "param": 8,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 49,
+  "fields": {
+    "style": 6,
+    "param": 9,
+    "value": "0"
+  }
+},
+{
+  "model": "reports.rule",
+  "pk": 50,
+  "fields": {
+    "style": 3,
+    "param": 3,
+    "value": "1.5"
+  }
+}
+]

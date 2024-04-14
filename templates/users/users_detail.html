@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}Моя страница{% endblock %}
+
+{% block content %}
+
+  {% if user.image %}
+    <div style="display:inline-block;margin-right:20px;">
+      <img src="{{ user.image.url }}" height="450px">
+    </div>
+  {% endif %}
+  <div style="display:inline-block">
+    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+    {% url 'users:edit' as the_link %}
+    {% bootstrap_button "Изменить" button_type="link" href=the_link %}
+    <div class="border rounded" style="margin-top:10px;">
+      <p style="margin-top:10px;padding-left:10px;">Имя пользователя: {{ user.username }}</p>
+      <hr>
+      <p style="padding-left:10px;">Email: {{ user.email }}</p>
+      <hr>
+      <p style="padding-left:10px;">Кол-во проверок: {{ user.reports.count }}</p>
+    </div>
+  </div>
+{% endblock content %}

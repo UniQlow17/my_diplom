@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load myfilters %}
+
+{% block title %}{{report.title}}{% endblock %}
+
+{% block content %}
+    <h1 style="text-align:center;margin-bottom:20px;">{{report.title}}</h1>
+  <div class="d-flex align-items-center justify-content-center">
+    <a href="{% url 'reports:download_report' report.id %}" class="btn btn-primary" style="margin-right:5px;text-align:center;margin-bottom:20px;">Скачать запись</a>
+    <a href="{% url 'reports:delete' report.id %}" class="btn btn-danger" style="text-align:center;margin-bottom:20px;">Удалить запись</a>
+  </div>
+  {% with report.text as text %}
+    <h2 style="text-align:center;">Основной текст</h2>
+    {% for info in text.par_info %}
+      <div>
+        {% if 'warning' in info %}
+          <p><strong style="background-color:yellow;">Предупреждение:</strong> {{info.warning}}</p>
+          {% if info.text %}
+            <p><strong>Текст:</strong> {{info.text}}</p>
+          {% else %}
+            <p><strong>Текст:</strong> Пустая строка.</p>
+          {% endif %}
+          {% if info.next_text %}
+            <p><strong>Следующий текст:</strong> {{info.next_text}}</p>
+          {% else %}
+            <p><strong>Следующий текст:</strong> Пустая строка.</p>
+          {% endif %}
+        {% else %}
+          <p><strong>Стиль:</strong> {{info.style}}</p>
+          <p><strong style="background-color:pink;">Ошибки:</strong></p>
+          <ul>
+            {% for _, error in info.errors.items %}
+              <li><strong>{{error.name}}:</strong> {{error.error_text}}</li>
+            {% endfor %}
+          </ul>
+          <p><strong>Текст:</strong> {{info.text}}</p>
+        {% endif %}
+        {% if not forloop.last %}
+          <hr class="mt-3"> 
+        {% endif %}
+      </div>
+    {% empty %}
+      <p>Текст оформлен по требованиям.</p>
+    {% endfor %}
+    {% if text.tab_info %}
+      <h2 style="text-align:center;margin-top:20px;">Таблицы</h2>
+      {% for table in text.tab_info %}
+        {% if 'rows' in table.1 and table.1.rows or 'table_alignment' in table.1 %}
+          <p><strong>Таблица {{table.0|get_last_obj:'_'|add:1}}:</strong></p>
+          {% if 'table_alignment' in table.1 %}
+            <p><strong>Выравнивание: </strong>{{table.1.table_alignment}}</p>
+          {% endif %}
+          <ul>
+            {% for i, row in table.1.rows.items %}
+              <li><strong>Строка {{i|get_last_obj:'_'|add:1}}:</strong></li>
+              <ul>
+                {% for j, cell in row.items %}
+                  <li><strong>Колонка {{j|get_last_obj:'_'|add:1}}:</strong></li>
+                  <div>
+                    {% for info in cell %}
+                      <p><strong style="background-color:pink;">Ошибки:</strong></p>
+                      <ul>
+                        {% for _, error in info.errors.items %}
+                          <li><p><strong>{{error.name}}:</strong> {{error.error_text}}</p></li>
+                        {% endfor %}
+                      </ul>
+                      <p><strong>Текст:</strong> {{info.text}}</p>
+                      {% if not forloop.last %}
+                        <hr class="mt-3">
+                      {% endif %}
+                    {% endfor %}
+                    {% if not forloop.last %}
+                      <hr class="mt-3" style="border:2px solid blue;">
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </ul>
+              {% if not forloop.last %}
+                <hr class="mt-3" style="border:2px solid red;">
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p style="text-align:center;"><strong>Таблица {{table.0|get_last_obj:'_'|add:1}}</strong> оформлена по требованиям.</p>
+        {% endif %}
+        {% if not forloop.last %}
+          <hr class="mt-4">
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+{% endblock %}

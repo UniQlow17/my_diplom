@@ -1,0 +1,55 @@
+<header>
+    <nav class="navbar shadow-sm">
+      <div class="container">
+        {% with request.resolver_match.view_name as view_name %}
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'rules' %} active {% endif %}"
+                href="{% url 'rules' %}">
+                Правила оформления
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'feedback' %} active {% endif %}"
+                href="{% url 'feedback' %}">
+                Форма обратной связи
+              </a>
+            </li>
+          </ul>
+          <ul class="nav nav-pills">
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link {% if view_name == 'reports:download' %} active {% endif %}"
+                  href="{% url 'reports:download' %}">
+                  Проверка ВКР
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if view_name == 'reports:report_list' %} active {% endif %}"
+                  href="{% url 'reports:report_list' %}">
+                  Мои отчёты
+                </a>
+              </li>
+              <div class="btn-group" role="group" aria-label="Basic outlined example" style="margin-left:5px;">
+                <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                    href="{% url 'users:detail' %}">{% if user.image %}
+                    <div style="display:inline-block;margin-right:5px;">
+                      <img src="{{ user.image.url }}" height="25px">
+                    </div>
+                  {% endif %}{{ user.username }}</a></button>
+                <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                    href="{% url 'logout' %}">Выйти</a></button>
+              </div>
+            {% else %}
+              <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                    href="{% url 'login' %}">Войти</a></button>
+                <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                    href="{% url 'registration' %}">Регистрация</a></button>
+              </div>
+            {% endif %}
+          </ul>
+        {% endwith %}
+      </div>
+    </nav>
+  </header>
