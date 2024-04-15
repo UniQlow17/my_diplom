@@ -50,35 +50,52 @@ def download_report(request, pk):
     if report.text['par_info']:
         for info in report.text['par_info']:
             if 'warning' in info:
-                response.write(f'Предупреждение: {info["warning"]}\n'.encode('utf-8'))
-                response.write(f'Текст: {info["text"] if info["text"] else "Пустая строка."}\n'.encode('utf-8'))
-                response.write(f'Следующий текст: {info["next_text"] if "next_text" in info and info["next_text"] else "Пустая строка."}\n\n'.encode('utf-8'))
+                response.write('Предупреждение: '
+                               f'{info["warning"]}\n'.encode('utf-8'))
+                text = info["text"] if info["text"] else "Пустая строка."
+                response.write(f'Текст: {text}\n'.encode('utf-8'))
+                next_text = (info["next_text"]
+                             if "next_text" in info and info["next_text"]
+                             else "Пустая строка.")
+                response.write(f'Следующий текст: {next_text}'
+                               '\n\n'.encode('utf-8'))
             else:
                 response.write(f'Стиль: {info["style"]}\n'.encode('utf-8'))
                 response.write('Ошибки:\n'.encode('utf-8'))
                 for _, error in info['errors'].items():
-                    response.write(f'{error["name"]}: {error["error_text"]}\n'.encode('utf-8'))
+                    response.write(f'{error["name"]}: '
+                                   f'{error["error_text"]}\n'.encode('utf-8'))
                 response.write(f'Текст: {info["text"]}\n\n'.encode('utf-8'))
     else:
         response.write('Текст оформлен по требованиям.\n'.encode('utf-8'))
     if report.text['tab_info']:
         response.write('\n\n\nТаблицы:\n\n'.encode('utf-8'))
         for table in report.text['tab_info']:
-            if 'rows' in table[1] and table[1]['rows'] or 'table_alignment' in table[1]:
-                response.write(f'Таблица {int(table[0].split("_")[-1])+1}:\n'.encode('utf-8'))
+            if ('rows' in table[1] and table[1]['rows']
+                    or 'table_alignment' in table[1]):
+                response.write(f'Таблица {int(table[0].split("_")[-1])+1}'
+                               ':\n'.encode('utf-8'))
                 if 'table_alignment' in table[1]:
-                    response.write(f'Выравнивание: {table[1]["table_alignment"]}\n'.encode('utf-8'))
+                    response.write('Выравнивание: '
+                                   f'{table[1]["table_alignment"]}'
+                                   '\n'.encode('utf-8'))
                 for i, row in table[1]['rows'].items():
-                    response.write(f'Строка {int(i.split("_")[-1])+1}:\n'.encode('utf-8'))
+                    response.write(f'Строка {int(i.split("_")[-1])+1}:'
+                                   '\n'.encode('utf-8'))
                     for j, cell in row.items():
-                        response.write(f'Колонка {int(j.split("_")[-1])+1}:\n'.encode('utf-8'))
+                        response.write(f'Колонка {int(j.split("_")[-1])+1}:'
+                                       '\n'.encode('utf-8'))
                         for info in cell:
                             response.write('Ошибки:\n'.encode('utf-8'))
                             for _, error in info['errors'].items():
-                                response.write(f'{error["name"]}: {error["error_text"]}\n'.encode('utf-8'))
-                            response.write(f'Текст: {info["text"]}\n\n'.encode('utf-8'))
+                                response.write(f'{error["name"]}: '
+                                               f'{error["error_text"]}'
+                                               '\n'.encode('utf-8'))
+                            response.write(f'Текст: {info["text"]}'
+                                           '\n\n'.encode('utf-8'))
             else:
-                response.write(f'Таблица {int(table[0].split("_")[-1])+1} оформлена по требованиям.\n'.encode('utf-8'))
+                response.write(f'Таблица {int(table[0].split("_")[-1])+1} '
+                               'оформлена по требованиям.\n'.encode('utf-8'))
     response.seek(0)
 
     return FileResponse(

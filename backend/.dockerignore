@@ -1,0 +1,6 @@
+.env
+venv
+.git
+media/
+sent_emails/
+db.sqlite3

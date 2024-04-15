@@ -15,7 +15,7 @@
     {% url 'users:edit' as the_link %}
     {% bootstrap_button "Изменить" button_type="link" href=the_link %}
     <div class="border rounded" style="margin-top:10px;">
-      <p style="margin-top:10px;padding-left:10px;">Имя пользователя: {{ user.username }}</p>
+      <p style="margin-top:10px;padding-left:10px;margin-right:10px;">Имя пользователя: {{ user.username }}</p>
       <hr>
       <p style="padding-left:10px;">Email: {{ user.email }}</p>
       <hr>

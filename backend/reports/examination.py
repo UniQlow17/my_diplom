@@ -26,16 +26,16 @@ class RuleParams:
         for par, value in self.rule_params.items():
             if data[par] != value[1]:
                 errors[par] = {
-                        'error_text': (
-                            f"У вас {data[par]}, а должно быть "
-                            f"{value[1]}."
-                        ),
-                        'name': value[0],
+                    'error_text': (
+                        f"У вас {data[par]}, а должно быть "
+                        f"{value[1]}."
+                    ),
+                    'name': value[0],
                 }
         if self.style == 'Heading' and data['text'] != data['text'].upper():
             errors['upper'] = {
-                    'error_text': 'Заголовки должны быть в верхнем регистре.',
-                    'name': 'Верхний регистр',
+                'error_text': 'Заголовки должны быть в верхнем регистре.',
+                'name': 'Верхний регистр',
             }
         return errors
 
@@ -169,7 +169,7 @@ def get_par_info(doc: Document) -> dict:
                 style = 'ImageName'
             if par_info['text'].startswith('Таблица '):
                 style = 'TableName'
-            if paragraphs[i-1].text.startswith('Таблица '):
+            if paragraphs[i - 1].text.startswith('Таблица '):
                 style = 'TableName'
 
             errors = detected_classes.get(
@@ -184,17 +184,17 @@ def get_par_info(doc: Document) -> dict:
                 })
         else:
             if i != len(paragraphs) - 1:
-                if (paragraphs[i+1].text and
-                        paragraphs[i+1].text.startswith('Рис. ')):
+                txt = paragraphs[i + 1].text
+                if txt and txt.startswith('Рис. '):
                     style = 'ImageName'
                     par_info['line_spacing'] = 1.5
-                    par_info['text'] = 'Является ' + paragraphs[i+1].text
+                    par_info['text'] = 'Является ' + txt
                 else:
                     all_par_info.append({
                         'text': p.text,
                         'warning': ('Обнаружена пустая строка.'
                                     ' Возможна ошибка!'),
-                        'next_text': paragraphs[i+1].text
+                        'next_text': txt
                     })
             else:
                 all_par_info.append({
