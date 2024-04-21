@@ -268,7 +268,6 @@ def get_table_info(doc: Document) -> dict:
                 table_info['rows'].pop(f'row_{index}')
         if table_info['rows']:
             all_tab_info.append((f'table_{ind}', table_info))
-    raise
     return all_tab_info
 
 
