@@ -222,7 +222,7 @@ def get_table_info(doc: Document) -> dict:
                 for p in cell.paragraphs:
                     table_info_cell = dict()
 
-                    if p.text:
+                    if p.text and p.runs:
                         pr = p.runs[0]
                         ps = p.style
                         psbs = ps.base_style
@@ -268,6 +268,7 @@ def get_table_info(doc: Document) -> dict:
                 table_info['rows'].pop(f'row_{index}')
         if table_info['rows']:
             all_tab_info.append((f'table_{ind}', table_info))
+    raise
     return all_tab_info
 
 
