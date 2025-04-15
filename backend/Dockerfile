@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.11
 
 WORKDIR /app
 
@@ -8,10 +8,11 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . .
 
-RUN chmod +x /app/wait_db_connections.sh
+RUN sed -i 's/\r$//' /app/wait_db_connections.sh && \
+    chmod +x /app/wait_db_connections.sh
 
 RUN python manage.py collectstatic --noinput
 
-ENTRYPOINT ["/app/wait_db_connections.sh"]
+ENTRYPOINT ["/bin/bash", "/app/wait_db_connections.sh"]
 
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "diplom.wsgi"]

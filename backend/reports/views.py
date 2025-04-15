@@ -25,7 +25,7 @@ def download(request):
             obj = Report.objects.create(
                 author=request.user,
                 title=''.join(str(form.cleaned_data['file']).split('.')[:-1]),
-                text=json.JSONEncoder().encode(info),
+                text=json.dumps(info, ensure_ascii=False),
             )
             return redirect('reports:detail', obj.id)
     else:
@@ -44,58 +44,58 @@ def download_report(request, pk):
     if report.author != request.user and not request.user.is_superuser:
         raise PermissionDenied
 
-    report.text = json.JSONDecoder().decode(report.text)
+    report.text = json.loads(report.text)
     response = BytesIO()
-    response.write('Основной текст:\n\n'.encode('utf-8'))
+    response.write('Основной текст:\n\n'.encode())
     if report.text['par_info']:
         for info in report.text['par_info']:
             if 'warning' in info:
                 response.write('Предупреждение: '
-                               f'{info["warning"]}\n'.encode('utf-8'))
+                               f'{info["warning"]}\n'.encode())
                 text = info["text"] if info["text"] else "Пустая строка."
-                response.write(f'Текст: {text}\n'.encode('utf-8'))
+                response.write(f'Текст: {text}\n'.encode())
                 next_text = (info["next_text"]
                              if "next_text" in info and info["next_text"]
                              else "Пустая строка.")
                 response.write(f'Следующий текст: {next_text}'
-                               '\n\n'.encode('utf-8'))
+                               '\n\n'.encode())
             else:
-                response.write(f'Стиль: {info["style"]}\n'.encode('utf-8'))
-                response.write('Ошибки:\n'.encode('utf-8'))
+                response.write(f'Стиль: {info["style"]}\n'.encode())
+                response.write('Ошибки:\n'.encode())
                 for _, error in info['errors'].items():
                     response.write(f'{error["name"]}: '
-                                   f'{error["error_text"]}\n'.encode('utf-8'))
-                response.write(f'Текст: {info["text"]}\n\n'.encode('utf-8'))
+                                   f'{error["error_text"]}\n'.encode())
+                response.write(f'Текст: {info["text"]}\n\n'.encode())
     else:
-        response.write('Текст оформлен по требованиям.\n'.encode('utf-8'))
+        response.write('Текст оформлен по требованиям.\n'.encode())
     if report.text['tab_info']:
-        response.write('\n\n\nТаблицы:\n\n'.encode('utf-8'))
+        response.write('\n\n\nТаблицы:\n\n'.encode())
         for table in report.text['tab_info']:
             if ('rows' in table[1] and table[1]['rows']
                     or 'table_alignment' in table[1]):
                 response.write(f'Таблица {int(table[0].split("_")[-1])+1}'
-                               ':\n'.encode('utf-8'))
+                               ':\n'.encode())
                 if 'table_alignment' in table[1]:
                     response.write('Выравнивание: '
                                    f'{table[1]["table_alignment"]}'
-                                   '\n'.encode('utf-8'))
+                                   '\n'.encode())
                 for i, row in table[1]['rows'].items():
                     response.write(f'Строка {int(i.split("_")[-1])+1}:'
-                                   '\n'.encode('utf-8'))
+                                   '\n'.encode())
                     for j, cell in row.items():
                         response.write(f'Колонка {int(j.split("_")[-1])+1}:'
-                                       '\n'.encode('utf-8'))
+                                       '\n'.encode())
                         for info in cell:
-                            response.write('Ошибки:\n'.encode('utf-8'))
+                            response.write('Ошибки:\n'.encode())
                             for _, error in info['errors'].items():
                                 response.write(f'{error["name"]}: '
                                                f'{error["error_text"]}'
-                                               '\n'.encode('utf-8'))
+                                               '\n'.encode())
                             response.write(f'Текст: {info["text"]}'
-                                           '\n\n'.encode('utf-8'))
+                                           '\n\n'.encode())
             else:
                 response.write(f'Таблица {int(table[0].split("_")[-1])+1} '
-                               'оформлена по требованиям.\n'.encode('utf-8'))
+                               'оформлена по требованиям.\n'.encode())
     response.seek(0)
 
     return FileResponse(
@@ -136,6 +136,6 @@ class ReportDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         report = context['report']
-        report.text = json.JSONDecoder().decode(report.text)
+        report.text = json.loads(report.text)
         context['report'] = report
         return context

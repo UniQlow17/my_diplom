@@ -108,7 +108,7 @@ EMAIL_FILE_PATH = BASE_DIR / 'sent_emails'
 
 EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.yandex.ru')
 EMAIL_PORT = os.environ.get('EMAIL_PORT', 465)
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'jok2281488@yandex.ru')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'example@yandex.ru')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', 'True').lower() == 'true'
 

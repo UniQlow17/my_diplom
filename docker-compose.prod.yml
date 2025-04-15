@@ -7,7 +7,7 @@ volumes:
 
 services:
   db:
-    image: postgres:13
+    image: postgres:14
     env_file: .env
     restart: always
     volumes:
@@ -25,7 +25,7 @@ services:
     image: uniqlow19/diplom_nginx
     restart: always
     ports:
-      - 8000:80
+      - "8000:80"
     depends_on:
       - backend
     volumes:

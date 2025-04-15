@@ -2,12 +2,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path, reverse_lazy
-from django.views.generic.edit import CreateView
+from django.views.generic import CreateView, RedirectView
 
 from core.views import RulesPage, get_feedback
 from users.forms import UserCreateForm
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/rules/', permanent=True)),
     path('admin/', admin.site.urls),
     path('rules/', RulesPage.as_view(), name='rules'),
     path('auth/', include('django.contrib.auth.urls')),
